@@ -107,6 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userdataMap.put("surname", surname);
                     userdataMap.put("password", password);
                     userdataMap.put("userType", userType);
+                    userdataMap.put("pending", "false");
 
 
                     myDatabaseReference.child("Users").child(username).updateChildren(userdataMap)
