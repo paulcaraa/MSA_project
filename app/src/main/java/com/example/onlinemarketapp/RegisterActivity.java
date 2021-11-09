@@ -60,6 +60,7 @@ public class RegisterActivity extends AppCompatActivity {
         String surname = inputSurname.getText().toString();
         String email = inputEmail.getText().toString();
         String password = inputPassword.getText().toString();
+        String userType = "buyer";
         loadingBar = new ProgressDialog(this);
 
         if(TextUtils.isEmpty(name)){
@@ -83,12 +84,12 @@ public class RegisterActivity extends AppCompatActivity {
             loadingBar.setCanceledOnTouchOutside(false);
             loadingBar.show();
 
-            validateEmail(username, name, surname, email, password);
+            validateEmail(username, name, surname, email, password, userType);
         }
 
     }
 
-    private void validateEmail(final String username, final String name, final String surname, final String email, final String password) {
+    private void validateEmail(final String username, final String name, final String surname, final String email, final String password, final String userType) {
         final DatabaseReference myDatabaseReference;
         myDatabaseReference = FirebaseDatabase.getInstance().getReference();
 
@@ -105,6 +106,7 @@ public class RegisterActivity extends AppCompatActivity {
                     userdataMap.put("name", name);
                     userdataMap.put("surname", surname);
                     userdataMap.put("password", password);
+                    userdataMap.put("userType", userType);
 
 
                     myDatabaseReference.child("Users").child(username).updateChildren(userdataMap)

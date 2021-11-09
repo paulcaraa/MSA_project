@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
         browseButton.setOnClickListener(new View.OnClickListener(){
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, BrowseActivity.class);
+                Intent intent = new Intent(MainActivity.this, GuestBrowseActivity.class);
                 startActivity(intent);
             }
         });
