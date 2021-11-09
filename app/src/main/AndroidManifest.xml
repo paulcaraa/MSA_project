@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".GuestBrowseActivity"></activity>
+        <activity android:name=".ChangeDetailsActivity"></activity>
+        <activity android:name=".GuestBrowseActivity" />
         <activity
             android:name=".SellerMyProductsActivity"
             android:windowSoftInputMode="adjustPan" />
