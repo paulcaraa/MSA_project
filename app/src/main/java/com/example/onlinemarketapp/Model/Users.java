@@ -1,10 +1,12 @@
 package com.example.onlinemarketapp.Model;
 
-public class User {
+public class Users {
     private String username, name, surname, email, password;
     private String userType;
 
-    public User(String username, String name, String surname, String email, String password, String userType) {
+    public Users() {}
+
+    public Users(String username, String name, String surname, String email, String password, String userType) {
         this.username = username;
         this.name = name;
         this.surname = surname;

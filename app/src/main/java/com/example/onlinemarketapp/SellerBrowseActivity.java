@@ -1,5 +1,7 @@
 package com.example.onlinemarketapp;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,11 +10,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class SellerBrowseActivity extends AppCompatActivity {
 
-public class BrowseActivity extends AppCompatActivity {
-    private Button logoutButton, accountButton;
+    private Button logoutButton, accountButton, addProductButton, myProductsButton;
     private Spinner categorySpinner;
     private ImageView logo;
     private String category;
@@ -20,11 +22,14 @@ public class BrowseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse);
+        setContentView(R.layout.activity_seller_browse);
+        Toast.makeText(this, "Welcome seller!...", Toast.LENGTH_SHORT).show();
 
         logoutButton = findViewById(R.id.logout_button);
         accountButton = findViewById(R.id.account_button);
+        addProductButton = findViewById(R.id.add_prod_button);
         categorySpinner = findViewById(R.id.category_spinner); //to do
+        myProductsButton = findViewById(R.id.my_prod_button);
         logo = findViewById(R.id.login_applogo);
 
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -42,16 +47,31 @@ public class BrowseActivity extends AppCompatActivity {
 
         logoutButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(BrowseActivity.this, MainActivity.class);
+                Intent intent = new Intent(SellerBrowseActivity.this, MainActivity.class);
                 startActivity(intent);
             }
         });
 
         accountButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(BrowseActivity.this, AccountActivity.class);
+                Intent intent = new Intent(SellerBrowseActivity.this, AccountActivity.class);
                 startActivity(intent);
             }
         });
+
+        addProductButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(SellerBrowseActivity.this, SellerAddProductActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        myProductsButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View view) {
+                Intent intent = new Intent(SellerBrowseActivity.this, SellerMyProductsActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

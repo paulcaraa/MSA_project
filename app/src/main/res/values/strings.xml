@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">Online Market App</string>
+    <string-array name="category_array">
+        <item>All</item>
+        <item>Tech</item>
+        <item>Clothing</item>
+        <item>Footwear</item>
+        <item>Transportation</item>
+        <item>Home and garden</item>
+        <item>Hobby</item>
+        <item>Pets</item>
+        <item>Toys</item>
+    </string-array>
 </resources>

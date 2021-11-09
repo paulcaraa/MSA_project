@@ -1,5 +1,7 @@
 package com.example.onlinemarketapp;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,21 +11,20 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 
-import androidx.appcompat.app.AppCompatActivity;
+public class GuestBrowseActivity extends AppCompatActivity {
 
-public class BrowseActivity extends AppCompatActivity {
-    private Button logoutButton, accountButton;
+    private Button loginButton, registerButton;
     private Spinner categorySpinner;
     private ImageView logo;
-    private String category;
+    private String category = "All";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse);
+        setContentView(R.layout.activity_guest_browse);
 
-        logoutButton = findViewById(R.id.logout_button);
-        accountButton = findViewById(R.id.account_button);
+        loginButton = findViewById(R.id.login_button);
+        registerButton = findViewById(R.id.register_button);
         categorySpinner = findViewById(R.id.category_spinner); //to do
         logo = findViewById(R.id.login_applogo);
 
@@ -40,16 +41,16 @@ public class BrowseActivity extends AppCompatActivity {
             }
         });
 
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        loginButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(BrowseActivity.this, MainActivity.class);
+                Intent intent = new Intent(GuestBrowseActivity.this, LoginActivity.class);
                 startActivity(intent);
             }
         });
 
-        accountButton.setOnClickListener(new View.OnClickListener() {
+        registerButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(BrowseActivity.this, AccountActivity.class);
+                Intent intent = new Intent(GuestBrowseActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
         });
