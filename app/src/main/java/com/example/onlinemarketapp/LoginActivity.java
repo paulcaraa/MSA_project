@@ -17,6 +17,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.onlinemarketapp.Model.Users;
+import com.example.onlinemarketapp.Prevalent.Prevalent;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -117,6 +118,8 @@ public class LoginActivity extends AppCompatActivity {
                                 Toast.makeText(LoginActivity.this, "Welcome Admin, you are logged in Successfully...", Toast.LENGTH_SHORT).show();
                                 loadingBar.dismiss();
 
+                                Prevalent.currentOnlineUser = userData;
+
                                 Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
                                 startActivity(intent);
                             }
@@ -126,12 +129,16 @@ public class LoginActivity extends AppCompatActivity {
                                     Toast.makeText(LoginActivity.this, "Buyer logged in Successfully...", Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
 
+                                    Prevalent.currentOnlineUser = userData;
+
                                     Intent intent = new Intent(LoginActivity.this, BrowseActivity.class);
                                     startActivity(intent);
                                 }
                                 else if(usr_type.equals("seller")){
                                     Toast.makeText(LoginActivity.this, "Seller logged in Successfully...", Toast.LENGTH_SHORT).show();
                                     loadingBar.dismiss();
+
+                                    Prevalent.currentOnlineUser = userData;
 
                                     Intent intent = new Intent(LoginActivity.this, SellerBrowseActivity.class);
                                     startActivity(intent);
