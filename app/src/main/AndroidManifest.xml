@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ChangeDetailsActivity"></activity>
+        <activity android:name=".ApproveProductsActivity"></activity>
+        <activity android:name=".ApproveSellerAccountsActivity" />
+        <activity android:name=".ChangeDetailsActivity" />
         <activity android:name=".GuestBrowseActivity" />
         <activity
             android:name=".SellerMyProductsActivity"

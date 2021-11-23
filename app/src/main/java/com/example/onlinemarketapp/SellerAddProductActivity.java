@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.example.onlinemarketapp.Prevalent.Prevalent;
 import com.example.onlinemarketapp.R;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -47,14 +48,17 @@ public class SellerAddProductActivity extends AppCompatActivity {
     private Uri imageUri;
     private StorageReference ProductImagesRef;
     private DatabaseReference ProductsRef;
+    private String username;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seller_add_product);
 
-        ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Product Images");
+        ProductImagesRef = FirebaseStorage.getInstance().getReference().child("Products Images");
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
+        username = Prevalent.currentOnlineUser.getUsername();
 
         browseButton = (Button) findViewById(R.id.browse_button);
         accountButton = (Button) findViewById(R.id.account_button);
@@ -142,7 +146,7 @@ public class SellerAddProductActivity extends AppCompatActivity {
 
         if (imageUri == null)
         {
-            Toast.makeText(this, "Product image is mandatory...", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Products image is mandatory...", Toast.LENGTH_SHORT).show();
         }
         else if (TextUtils.isEmpty(description))
         {
@@ -172,7 +176,7 @@ public class SellerAddProductActivity extends AppCompatActivity {
 
     private void StoreProductInformation()
     {
-        loadingBar.setTitle("Add New Product");
+        loadingBar.setTitle("Add New Products");
         loadingBar.setMessage("Dear seller, please wait while we are adding the new product.");
         loadingBar.setCanceledOnTouchOutside(false);
         loadingBar.show();
@@ -205,7 +209,7 @@ public class SellerAddProductActivity extends AppCompatActivity {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot)
             {
-                Toast.makeText(SellerAddProductActivity.this, "Product Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
+                Toast.makeText(SellerAddProductActivity.this, "Products Image uploaded Successfully...", Toast.LENGTH_SHORT).show();
 
                 Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
                     @Override
@@ -227,7 +231,7 @@ public class SellerAddProductActivity extends AppCompatActivity {
                         {
                             downloadImageUrl = Objects.requireNonNull(task.getResult()).toString();
 
-                            Toast.makeText(SellerAddProductActivity.this, "got the Product image Url Successfully...", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SellerAddProductActivity.this, "got the Products image Url Successfully...", Toast.LENGTH_SHORT).show();
 
                             SaveProductInfoToDatabase();
                         }
@@ -249,7 +253,8 @@ public class SellerAddProductActivity extends AppCompatActivity {
         productMap.put("price", price);
         productMap.put("name", name);
         productMap.put("phone", phoneNo);
-        productMap.put("pending", "true");
+        productMap.put("seller", username);
+        productMap.put("pending", true);
 
         ProductsRef.child(productRandomKey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -262,7 +267,7 @@ public class SellerAddProductActivity extends AppCompatActivity {
                             startActivity(intent);
 
                             loadingBar.dismiss();
-                            Toast.makeText(SellerAddProductActivity.this, "Product is added successfully..", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(SellerAddProductActivity.this, "Products is added successfully..", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
