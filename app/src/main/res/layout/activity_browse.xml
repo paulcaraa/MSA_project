@@ -69,10 +69,6 @@
         android:orientation="horizontal"
         >
 
-
-
-
-
         <Spinner
             android:id="@+id/category_spinner"
             android:layout_width="130dp"

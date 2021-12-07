@@ -12,13 +12,14 @@ public class Products {
     private String pid;
     private boolean pending;
     private String seller;
+    private boolean approved;
 
     public Products()
     {
 
     }
 
-    public Products(String name, String description, String price, String image, String category, String date, String time, boolean pending, String pid, String seller) {
+    public Products(String name, String description, String price, String image, String category, String date, String time, boolean pending, String pid, String seller, boolean approved) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -29,8 +30,24 @@ public class Products {
         this.time = time;
         this.pid = pid;
         this.seller = seller;
+        this.approved = approved;
     }
 
+    public String getSeller() {
+        return seller;
+    }
+
+    public void setSeller(String seller) {
+        this.seller = seller;
+    }
+
+    public boolean isApproved() {
+        return approved;
+    }
+
+    public void setApproved(boolean approved) {
+        this.approved = approved;
+    }
 
     public String getName() {
         return name;
