@@ -255,6 +255,7 @@ public class SellerAddProductActivity extends AppCompatActivity {
         productMap.put("phone", phoneNo);
         productMap.put("seller", username);
         productMap.put("pending", true);
+        productMap.put("approved", false);
 
         ProductsRef.child(productRandomKey).updateChildren(productMap)
                 .addOnCompleteListener(new OnCompleteListener<Void>() {
