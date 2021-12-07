@@ -81,19 +81,19 @@ public class LoginActivity extends AppCompatActivity {
         String username = inputUsername.getText().toString();
         String password = inputPassword.getText().toString();
 
-         if(TextUtils.isEmpty(username)){
+        if(TextUtils.isEmpty(username)){
             Toast.makeText(this, "Please write your email", Toast.LENGTH_SHORT).show();
         }
         else if(TextUtils.isEmpty(password)){
             Toast.makeText(this, "Please write your password", Toast.LENGTH_SHORT).show();
         }
         else{
-             loadingBar.setTitle("Login Account");
-             loadingBar.setMessage("Please wait, while we are checking the credentials.");
-             loadingBar.setCanceledOnTouchOutside(false);
-             loadingBar.show();
+            loadingBar.setTitle("Login Account");
+            loadingBar.setMessage("Please wait, while we are checking the credentials.");
+            loadingBar.setCanceledOnTouchOutside(false);
+            loadingBar.show();
 
-             login(username, password);
+            login(username, password);
         }
     }
 

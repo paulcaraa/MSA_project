@@ -52,6 +52,7 @@ public class ApproveProductsActivity extends AppCompatActivity {
         approveProductsButton = findViewById(R.id.approve_products_button);
         approveSellersButton = findViewById(R.id.approve_sellers_button);
         approveProduct = findViewById(R.id.approve_button);
+        disproveProduct = findViewById(R.id.disprove_button);
         categorySpinner = findViewById(R.id.category_spinner); //to do
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
@@ -74,25 +75,25 @@ public class ApproveProductsActivity extends AppCompatActivity {
             }
         });
 
-        approveProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
-
-        disproveProduct.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-
-            }
-        });
+//        approveProduct.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//            }
+//        });
+//
+//        disproveProduct.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//
+//            }
+//        });
 
         approveSellersButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(ApproveProductsActivity.this, MainActivity.class);
+                Intent intent = new Intent(ApproveProductsActivity.this, ApproveSellerAccountsActivity.class);
                 startActivity(intent);
             }
         });
@@ -140,12 +141,6 @@ public class ApproveProductsActivity extends AppCompatActivity {
 //                else{
 //                    Toast.makeText(ApproveProductsActivity.this, "product isn't pending " + model.isPending(), Toast.LENGTH_SHORT).show();
 //                }
-                holder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        
-                    }
-                });
             }
 
             @NonNull
@@ -153,8 +148,6 @@ public class ApproveProductsActivity extends AppCompatActivity {
             public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
             {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.approve_product_items_layout, parent, false);
-                int count = parent.getChildCount();
-
 
                 return new ProductViewHolder(view);
             }
