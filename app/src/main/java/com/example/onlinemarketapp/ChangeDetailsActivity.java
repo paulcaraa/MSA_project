@@ -52,7 +52,7 @@ public class ChangeDetailsActivity extends AppCompatActivity {
                 applyChanges();
                 loadingBar.dismiss();
 
-                Intent intent = new Intent(ChangeDetailsActivity.this, BrowseActivity.class);
+                Intent intent = new Intent(ChangeDetailsActivity.this, AccountActivity.class);
                 if(userType.equals("seller")){
                     intent = new Intent(ChangeDetailsActivity.this, SellerBrowseActivity.class);
                 }

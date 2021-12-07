@@ -8,9 +8,11 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.onlinemarketapp.Model.Users;
 import com.example.onlinemarketapp.Prevalent.Prevalent;
@@ -108,11 +110,28 @@ public class AccountActivity extends AppCompatActivity {
                 ref.addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        ref.child("Users").child(username).child("pending").setValue(true);
-                        Users userData = dataSnapshot.child("Users").child(username).getValue(Users.class);
-                        Prevalent.currentOnlineUser = userData;
-                        Intent intent = new Intent(AccountActivity.this, BrowseActivity.class);
-                        startActivity(intent);
+                        String phone = phone_text.getText().toString();
+                        String address = address_text.getText().toString();
+
+                        if(TextUtils.isEmpty(phone) && TextUtils.isEmpty(address)){
+                            Toast.makeText(AccountActivity.this, "You need to fill in your phone number and address", Toast.LENGTH_SHORT).show();
+                        }
+                        else if(TextUtils.isEmpty(phone)){
+                            Toast.makeText(AccountActivity.this, "You need to fill in your phone number", Toast.LENGTH_SHORT).show();
+                        }
+                        else if(TextUtils.isEmpty(address)){
+                            Toast.makeText(AccountActivity.this, "You need to fill in your address", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            ref.child("Users").child(username).child("pending").setValue(true);
+                            Users userData = dataSnapshot.child("Users").child(username).getValue(Users.class);
+                            Prevalent.currentOnlineUser = userData;
+
+                            Toast.makeText(AccountActivity.this, "You have successfully applied for a seller account", Toast.LENGTH_SHORT).show();
+
+                            Intent intent = new Intent(AccountActivity.this, BrowseActivity.class);
+                            startActivity(intent);
+                        }
                     }
 
                     @Override
