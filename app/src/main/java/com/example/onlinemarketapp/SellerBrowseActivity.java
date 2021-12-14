@@ -18,7 +18,6 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.example.onlinemarketapp.Model.Products;
-import com.example.onlinemarketapp.Prevalent.Prevalent;
 import com.example.onlinemarketapp.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -48,7 +47,7 @@ public class SellerBrowseActivity extends AppCompatActivity {
         accountButton = findViewById(R.id.account_button);
         addProductButton = findViewById(R.id.add_prod_button);
         categorySpinner = findViewById(R.id.category_spinner); //to do
-        myProductsButton = findViewById(R.id.my_prod_button);
+        myProductsButton = findViewById(R.id.home_button);
         logo = findViewById(R.id.login_applogo);
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
@@ -122,6 +121,7 @@ public class SellerBrowseActivity extends AppCompatActivity {
                 Objects.requireNonNull(holder).txtProductName.setText(model.getName());
                 holder.txtProductDescription.setText(model.getDescription());
                 holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                holder.txtProductPhone.setText("Phone No.: " + model.getPhone());
                 Picasso.get().load(model.getImage()).into(holder.imageView);
             }
 

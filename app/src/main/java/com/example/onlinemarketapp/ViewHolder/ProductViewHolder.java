@@ -10,7 +10,7 @@ import com.example.onlinemarketapp.R;
 
 public class ProductViewHolder extends RecyclerView.ViewHolder
 {
-    public TextView txtProductName, txtProductDescription, txtProductPrice;
+    public TextView txtProductName, txtProductDescription, txtProductPrice, txtProductPhone;
     public ImageView imageView;
 
 
@@ -22,5 +22,6 @@ public class ProductViewHolder extends RecyclerView.ViewHolder
         txtProductName = (TextView) itemView.findViewById(R.id.product_name);
         txtProductDescription = (TextView) itemView.findViewById(R.id.product_description);
         txtProductPrice = (TextView) itemView.findViewById(R.id.product_price);
+        txtProductPhone = (TextView) itemView.findViewById(R.id.product_phone);
     }
 }
