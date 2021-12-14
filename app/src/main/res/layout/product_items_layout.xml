@@ -56,6 +56,18 @@
             android:textColor="@color/colorPrimaryDark"
             />
 
+        <TextView
+            android:id="@+id/product_phone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_description"
+            android:text="Product Phone"
+            android:layout_marginTop="2dp"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textColor="@color/colorPrimaryDark"
+            />
+
     </RelativeLayout>
 
 </androidx.cardview.widget.CardView>

@@ -10,16 +10,14 @@ public class Products {
     private String date;
     private String time;
     private String pid;
+    private String phone;
     private boolean pending;
     private String seller;
     private boolean approved;
 
-    public Products()
-    {
+    public Products(){}
 
-    }
-
-    public Products(String name, String description, String price, String image, String category, String date, String time, boolean pending, String pid, String seller, boolean approved) {
+    public Products(String name, String description, String price, String image, String category, String date, String time, String phone, boolean pending, String pid, String seller, boolean approved) {
         this.name = name;
         this.description = description;
         this.price = price;
@@ -28,6 +26,7 @@ public class Products {
         this.pending = pending;
         this.date = date;
         this.time = time;
+        this.phone = phone;
         this.pid = pid;
         this.seller = seller;
         this.approved = approved;
@@ -115,5 +114,13 @@ public class Products {
 
     public void setPid(String pid) {
         this.pid = pid;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }

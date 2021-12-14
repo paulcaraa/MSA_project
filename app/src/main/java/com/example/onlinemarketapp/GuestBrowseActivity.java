@@ -108,6 +108,7 @@ public class GuestBrowseActivity extends AppCompatActivity {
                         Objects.requireNonNull(holder).txtProductName.setText(model.getName());
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                        holder.txtProductPhone.setText("Phone No.: " + model.getPhone());
                         Picasso.get().load(model.getImage()).into(holder.imageView);
                     }
 
