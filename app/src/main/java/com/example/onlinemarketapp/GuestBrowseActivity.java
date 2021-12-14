@@ -22,6 +22,7 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
@@ -31,6 +32,7 @@ public class GuestBrowseActivity extends AppCompatActivity {
     private Button loginButton, registerButton;
     private Spinner categorySpinner;
     private ImageView logo;
+    private String base_cat = "All";
     private String category = "All";
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
@@ -42,6 +44,8 @@ public class GuestBrowseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guest_browse);
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
+
+        Query b = ProductsRef.orderByChild("category");
 
         loginButton = findViewById(R.id.login_button);
         registerButton = findViewById(R.id.register_button);
