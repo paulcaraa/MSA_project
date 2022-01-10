@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.onlinemarketapp.Model.Products;
+import com.example.onlinemarketapp.ViewHolder.BigProductViewHolder;
 import com.example.onlinemarketapp.ViewHolder.ProductViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -26,11 +27,10 @@ import com.squareup.picasso.Picasso;
 
 import java.util.Objects;
 
-public class BrowseActivity extends AppCompatActivity {
-    private Button logoutButton, accountButton;
-    private Spinner categorySpinner;
+public class ViewProductsActivity extends AppCompatActivity {
+    private Products my_prod;
+    private Button backButton;
     private ImageView logo;
-    private String category;
     private DatabaseReference ProductsRef;
     private RecyclerView recyclerView;
     RecyclerView.LayoutManager layoutManager;
@@ -38,46 +38,33 @@ public class BrowseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_browse);
+        setContentView(R.layout.activity_view_product);
+
+        Intent myIntent = getIntent();
+        my_prod = (Products) myIntent.getSerializableExtra("prod");
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
 
-        logoutButton = findViewById(R.id.logout_button);
-        accountButton = findViewById(R.id.account_button);
-        categorySpinner = findViewById(R.id.category_spinner); //to do
+        backButton = findViewById(R.id.back_button);
         logo = findViewById(R.id.login_applogo);
 
-        recyclerView = findViewById(R.id.recycler_menu);
+        recyclerView = findViewById(R.id.recycler_menu_2);
         recyclerView.setHasFixedSize(true);
-        layoutManager = new LinearLayoutManager(this);
+        recyclerView.stopScroll();
+        layoutManager = new LinearLayoutManager(this) {
+            @Override
+            public boolean canScrollVertically() {
+                return false;
+            }
+        };
         recyclerView.setLayoutManager(layoutManager);
 
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.category_array, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categorySpinner.setAdapter(adapter);
-
-        categorySpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
-                category = parent.getItemAtPosition(pos).toString();
-            }
-            public void onNothingSelected(AdapterView<?> parent) {
-            }
-        });
-
-        logoutButton.setOnClickListener(new View.OnClickListener() {
+        backButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                Intent intent = new Intent(BrowseActivity.this, MainActivity.class);
-                startActivity(intent);
+                ViewProductsActivity.this.finish();
             }
         });
 
-        accountButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                Intent intent = new Intent(BrowseActivity.this, AccountActivity.class);
-                startActivity(intent);
-            }
-        });
     }
 
     @Override
@@ -92,14 +79,14 @@ public class BrowseActivity extends AppCompatActivity {
                         .build();
 
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+        FirebaseRecyclerAdapter<Products, BigProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, BigProductViewHolder>(options) {
 
 
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model)
+            protected void onBindViewHolder(@NonNull BigProductViewHolder holder, int position, @NonNull Products model)
             {
+                model = my_prod;
                 Objects.requireNonNull(holder).txtProductName.setText(model.getName());
-                holder.prod = model;
                 holder.txtProductDescription.setText(model.getDescription());
                 holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
                 holder.txtProductPhone.setText("Phone No.: " + model.getPhone());
@@ -108,10 +95,10 @@ public class BrowseActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+            public BigProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
             {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_items_layout, parent, false);
-                return new ProductViewHolder(view);
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.product_view_layout, parent, false);
+                return new BigProductViewHolder(view);
             }
 
         };

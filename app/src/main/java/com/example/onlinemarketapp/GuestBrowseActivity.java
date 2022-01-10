@@ -106,6 +106,7 @@ public class GuestBrowseActivity extends AppCompatActivity {
                     protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model)
                     {
                         Objects.requireNonNull(holder).txtProductName.setText(model.getName());
+                        holder.prod = model;
                         holder.txtProductDescription.setText(model.getDescription());
                         holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
                         holder.txtProductPhone.setText("Phone No.: " + model.getPhone());
