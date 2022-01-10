@@ -21,7 +21,7 @@ import android.widget.Toast;
 
 import com.example.onlinemarketapp.Model.Products;
 import com.example.onlinemarketapp.Prevalent.Prevalent;
-import com.example.onlinemarketapp.ViewHolder.ProductViewHolder;
+import com.example.onlinemarketapp.ViewHolder.ProductApproveViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.database.DatabaseReference;
@@ -51,8 +51,6 @@ public class ApproveProductsActivity extends AppCompatActivity {
         accountButton = findViewById(R.id.account_button);
         approveProductsButton = findViewById(R.id.approve_products_button);
         approveSellersButton = findViewById(R.id.approve_sellers_button);
-        approveProduct = findViewById(R.id.approve_button);
-        disproveProduct = findViewById(R.id.disprove_button);
         categorySpinner = findViewById(R.id.category_spinner); //to do
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
@@ -74,22 +72,6 @@ public class ApproveProductsActivity extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
-
-//        approveProduct.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//            }
-//        });
-//
-//        disproveProduct.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//
-//            }
-//        });
 
         approveSellersButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -127,15 +109,16 @@ public class ApproveProductsActivity extends AppCompatActivity {
                         .build();
 
 
-        FirebaseRecyclerAdapter<Products, ProductViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductViewHolder>(options) {
+        FirebaseRecyclerAdapter<Products, ProductApproveViewHolder> adapter = new FirebaseRecyclerAdapter<Products, ProductApproveViewHolder>(options) {
 
 
             @Override
-            protected void onBindViewHolder(@NonNull ProductViewHolder holder, int position, @NonNull Products model)
+            protected void onBindViewHolder(@NonNull ProductApproveViewHolder holder, int position, @NonNull Products model)
             {
                 Objects.requireNonNull(holder).txtProductName.setText(model.getName());
                 holder.txtProductDescription.setText(model.getDescription());
                 holder.txtProductPrice.setText("Price = " + model.getPrice() + "$");
+                holder.product = model;
                 Picasso.get().load(model.getImage()).into(holder.imageView);
 
 //                else{
@@ -145,11 +128,11 @@ public class ApproveProductsActivity extends AppCompatActivity {
 
             @NonNull
             @Override
-            public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
+            public ProductApproveViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType)
             {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.approve_product_items_layout, parent, false);
 
-                return new ProductViewHolder(view);
+                return new ProductApproveViewHolder(view);
             }
 
         };
