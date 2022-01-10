@@ -19,21 +19,19 @@
         android:src="@drawable/applogo"
         />
 
+
     <TextView
         android:id="@+id/app_slogan"
-        android:layout_width="248dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentTop="true"
-        android:layout_marginEnd="80dp"
-        android:layout_marginTop="150dp"
-        android:text="Buying and selling made easy"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="164dp"
+        android:text="It's not Olx\nBuying and selling made easy"
         android:textAlignment="center"
         android:textColor="@color/colorText"
         android:textSize="25sp"
-        android:textStyle="italic"
-        />
-
+        android:textStyle="italic" />
 
     <Button
         android:id="@+id/main_login_btn"
@@ -48,7 +46,7 @@
         android:padding="20dp"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:text="Already have an Account? Login"
+        android:text="Login"
         android:textColor="@android:color/white"
         />
 
@@ -64,7 +62,7 @@
         android:padding="20dp"
         android:textAllCaps="false"
         android:textSize="18sp"
-        android:text="Join Now"
+        android:text="Don't have an Account? Register"
         android:textColor="@android:color/white"
         />
 
